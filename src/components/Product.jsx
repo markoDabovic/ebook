@@ -20,7 +20,15 @@ export default function Product() {
             <button className="px-6 py-3 border w-[130px] border-pink-300 bg-pink-300 rounded-lg transition font-oregano">
               Preview
             </button>
-            <button className="px-6 py-3 border w-[130px] border-pink-300 bg-pink-300 rounded-lg transition font-oregano">
+            <button
+              onClick={() =>
+                window.open(
+                  "https://wa.me/381631207033?text=hey%20draga,%20posalji%20mi%20podatke%20za%20uplatu%20🤍%20🍑",
+                  "_blank",
+                )
+              }
+              className="px-6 py-3 border w-[130px] border-pink-300 bg-pink-300 rounded-lg transition font-oregano"
+            >
               {t("Kupi")}
             </button>
           </div>

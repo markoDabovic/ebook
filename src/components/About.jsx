@@ -16,10 +16,10 @@ export default function About() {
         </p>
 
         <a
-          href="tel:+38160000000"
+          href="https://wa.me/381631207033"
           className="bg-white text-pink-300 px-10 py-1 mt-6 mb-2 rounded-xl text-2xl font-oregano  transition md:text-4xl"
         >
-          {t("Pozovi")}
+          {t("WhatsApp")}
         </a>
       </div>
     </section>
