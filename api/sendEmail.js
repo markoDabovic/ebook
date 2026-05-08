@@ -17,15 +17,8 @@ export default async function handler(req, res) {
     subject: "Placanje za eBook",
     html: `
     <h2>Cao, u prilogu se nalazi placanje za eBook </h2>
-    <img src="cid:placanje"/>
+    <img src="https://bojanakostic.vercel.app/qr.jpg"/>
   `,
-    attachments: [
-      {
-        filename: "qr.jpg",
-        path: "./public/qr.jpg",
-        cid: "placanje",
-      },
-    ],
   });
 
   res.status(200).json({ success: true });
