@@ -3,9 +3,13 @@ import engleskiPdf from "../assets/preview in english.pdf";
 import srpskiPdf from "../assets/preview in serbian.pdf";
 import knjigaSrpski from "../assets/book.jpg";
 import knjigaEngleski from "../assets/knjigaEngleski.jpg";
+import { useState } from "react";
 
 export default function Product() {
   const { t, i18n } = useTranslation();
+
+  const [open, setOpen] = useState(false);
+  const [email, setEmail] = useState("");
 
   const openPdf = () => {
     const pdfUrl = i18n.language === "sr" ? srpskiPdf : engleskiPdf;
@@ -19,10 +23,45 @@ export default function Product() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        email: "lazo.lazarns16@gmail.com",
+        email: email,
       }),
     });
+
+    setEmail("");
+    setOpen(false);
   };
+
+  const model = (
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center">
+      <div className="bg-white p-6 rounded-2xl w-80 shadow-xl">
+        <h2 className="text-lg font-semibold mb-4 text-black">Unesi email</h2>
+
+        <input
+          type="email"
+          placeholder="example@gmail.com"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          className="w-full border p-2 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500 text-black"
+        />
+
+        <div className="flex justify-end gap-2">
+          <button
+            onClick={() => setOpen(false)}
+            className="px-4 py-2 bg-pink-300 rounded-lg"
+          >
+            Izadji
+          </button>
+
+          <button
+            onClick={sendEmail}
+            className="px-4 py-2 bg-pink-300 text-white rounded-lg"
+          >
+            Posalji
+          </button>
+        </div>
+      </div>
+    </div>
+  );
 
   return (
     <section id="program" className="py-12 bg-white ">
@@ -49,7 +88,7 @@ export default function Product() {
               Preview
             </button>
             <button
-              onClick={sendEmail}
+              onClick={() => setOpen(true)}
               className="px-6 py-3 border w-[130px] border-pink-300 bg-pink-300 rounded-lg transition font-oregano"
             >
               {t("Kupi")}
@@ -57,6 +96,7 @@ export default function Product() {
           </div>
         </div>
       </div>
+      {open && model}
     </section>
   );
 }

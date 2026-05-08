@@ -14,11 +14,18 @@ export default async function handler(req, res) {
   await transporter.sendMail({
     from: process.env.EMAIL_USER,
     to: email,
-    subject: "Poruka",
+    subject: "Placanje za eBook",
     html: `
-      <h2>Pozdrav!</h2>
-      <p>Ovo je probna</p>
-    `,
+    <h2>Cao, u prilogu se nalazi placanje za eBook </h2>
+    <img src="cid:placanje"/>
+  `,
+    attachments: [
+      {
+        filename: "qr.jpg",
+        path: "./public/qr.jpg",
+        cid: "placanje",
+      },
+    ],
   });
 
   res.status(200).json({ success: true });
