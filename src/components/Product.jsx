@@ -12,6 +12,18 @@ export default function Product() {
     window.open(pdfUrl, "_blank");
   };
 
+  const sendEmail = async () => {
+    await fetch("/api/sendEmail", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: "lazo.lazarns16@gmail.com",
+      }),
+    });
+  };
+
   return (
     <section id="program" className="py-12 bg-white ">
       <div className="max-w-6xl mx-auto flex flex-col gap-8 items-center">
@@ -37,12 +49,7 @@ export default function Product() {
               Preview
             </button>
             <button
-              onClick={() =>
-                window.open(
-                  "https://wa.me/381631207033?text=hey%20draga,%20posalji%20mi%20podatke%20za%20uplatu%20🤍%20🍑",
-                  "_blank",
-                )
-              }
+              onClick={sendEmail}
               className="px-6 py-3 border w-[130px] border-pink-300 bg-pink-300 rounded-lg transition font-oregano"
             >
               {t("Kupi")}
