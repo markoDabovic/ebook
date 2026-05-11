@@ -11,14 +11,21 @@ export default async function handler(req, res) {
     },
   });
 
+  const baseUrl = process.env.BASE_URL;
+  const imageUrl = `${baseUrl}/qr.jpg`;
   await transporter.sendMail({
     from: process.env.EMAIL_USER,
     to: email,
-    subject: "Placanje za eBook",
+    subject: "Plaćanje za eBook",
     html: `
-    <h2>Cao, u prilogu se nalazi placanje za eBook </h2>
-    <img src="https://bojanakostic.vercel.app/qr.jpg"/>
+    <h2>Cao, u prilogu se nalazi plaćanje za eBook </h2>
   `,
+    attachments: [
+      {
+        filename: "qr.jpg",
+        path: imageUrl,
+      },
+    ],
   });
 
   res.status(200).json({ success: true });
