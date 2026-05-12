@@ -1,9 +1,13 @@
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
+import { useMediaQuery } from "react-responsive";
 
 export default function Hero() {
   const { t, i18n } = useTranslation();
   const [jezik, setJezik] = useState(false);
+  const isDesktop = useMediaQuery({ query: "(min-width: 1224px)" });
+  const isMobile = useMediaQuery({ query: "(max-width: 767px)" });
+
   const changeLanguage = () => {
     const newLang = jezik ? "sr" : "en";
     setJezik((prev) => !prev);
@@ -23,7 +27,7 @@ export default function Hero() {
           {jezik ? "SR" : "EN"}
         </p>
       </div>
-      <div className="max-w-7xl mx-auto grid grid grid-cols-[1fr_2fr] w-full">
+      <div className="max-w-7xl mx-auto grid grid grid-cols-[1fr_2fr] w-full overflow-hidden">
         <div className="flex items-center ml-4">
           <div>
             <h1 className="text-6xl text-white font-bold leading-tight font-wedding">
@@ -41,7 +45,10 @@ export default function Hero() {
         </div>
 
         <div className="">
-          <img src="/bojana pocetna.png" className="h-full rounded-xl" />
+          <img
+            src={isMobile ? "bp2.png" : "bp1.png"}
+            className="h-full rounded-xl"
+          />
         </div>
       </div>
     </section>

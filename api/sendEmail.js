@@ -12,17 +12,20 @@ export default async function handler(req, res) {
   });
 
   const baseUrl = process.env.BASE_URL;
-  const imageUrl = `${baseUrl}/qr.jpg`;
+  const imageUrl = `${baseUrl}/QR code.jpg`;
   await transporter.sendMail({
     from: process.env.EMAIL_USER,
     to: email,
-    subject: "Plaćanje za eBook",
+    subject:
+      "Plaćanje za program transformacije / Payment for transformation program",
     html: `
-    <h2>Cao, u prilogu se nalazi plaćanje za eBook </h2>
+    <h3>Hey, ovo je kod preko koga vršiš plaćanje svog programa transformacije. Samo ga preuzmi u galeriju i IPS skeniraj u aplikaciji svoje banke.
+    <br/>
+    Hey in case you're not Serbian or you are, but you prefer another way to pay here's my Paypal account to get your transformation: kosticcb@gmail.com</h3>
   `,
     attachments: [
       {
-        filename: "qr.jpg",
+        filename: "QR code.jpg",
         path: imageUrl,
       },
     ],
