@@ -12,7 +12,7 @@ export default async function handler(req, res) {
   });
 
   const baseUrl = process.env.BASE_URL;
-  const imageUrl = `${baseUrl}/QR code.jpg`;
+  const imageUrl = `${baseUrl}/QR-code.jpg`;
   await transporter.sendMail({
     from: process.env.EMAIL_USER,
     to: email,
@@ -25,7 +25,7 @@ export default async function handler(req, res) {
   `,
     attachments: [
       {
-        filename: "QR code.jpg",
+        filename: "QR-code.jpg",
         path: imageUrl,
       },
     ],
