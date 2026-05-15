@@ -11,6 +11,7 @@ export default function Product() {
   const [open, setOpen] = useState(false);
   const [emailSent, setEmailSent] = useState(false);
   const [email, setEmail] = useState("");
+  const [disabledSentButton, setDisabledSentButton] = useState(false);
 
   const openPdf = () => {
     const pdfUrl = i18n.language === "sr" ? srpskiPdf : engleskiPdf;
@@ -18,6 +19,7 @@ export default function Product() {
   };
 
   const sendEmail = async () => {
+    setDisabledSentButton(true);
     await fetch("/api/sendEmail", {
       method: "POST",
       headers: {
@@ -61,6 +63,7 @@ export default function Product() {
 
           <button
             onClick={sendEmail}
+            disabled={disabledSentButton}
             className="px-4 py-2 bg-pink-300 text-white rounded-lg"
           >
             {t("Posalji")}
@@ -102,7 +105,10 @@ export default function Product() {
               Preview
             </button>
             <button
-              onClick={() => setOpen(true)}
+              onClick={() => {
+                setOpen(true);
+                setDisabledSentButton(false);
+              }}
               className="px-6 py-3 border w-[130px] border-pink-300 bg-pink-300 rounded-lg transition font-oregano"
             >
               {t("Kupi")}
